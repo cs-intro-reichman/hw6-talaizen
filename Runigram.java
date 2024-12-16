@@ -174,16 +174,13 @@ public class Runigram {
 	 * The two images must have the same dimensions.
 	 */
 	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
-		int rows = image1.length;
-		int columns = image1[0].length;
-		Color[][] blendedImage = new Color[rows][columns];
-
-		for (int i = 0; i < rows; i ++){
-			for (int j = 0; j < columns; j++){
-				blendedImage[i][j] = blend(image1[i][j], image2[i][j], alpha);
+		Color[][] mixed = new Color [image1.length][image1[0].length];
+		for (int i = 0; i < image1.length; i++) {
+			for (int j = 0; j < image1[0].length; j++) {
+				mixed[i][j] = blend(image1[i][j], image2[i][j], alpha);
 			}
 		}
-		return blendedImage;
+		return mixed;
 	}
 
 	/**
