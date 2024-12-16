@@ -138,18 +138,19 @@ public class Runigram {
 	 * The image is scaled (resized) to have the given width and height.
 	 */
 	public static Color[][] scaled(Color[][] image, int width, int height) {
+		Color [][] scaled = new Color[height][width];
 		int originalHeight = image.length;
 		int originalWidth = image[0].length;
-		Color[][] scaledImage = new Color[height][width];
-
-		for (int i = 0; i < height; i ++){
-			for (int j = 0; j < width; j++){
-				int orIH = (int) ((i / (double) height) * originalHeight);
-            	int orIW = (int) ((j / (double) width) * originalWidth);
-            	scaledImage[i][j] = image[orIH][orIW];
+		double rowScale = (double) originalHeight / height;
+		double colScale = (double) originalWidth / width;
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				int originalRow = (int)(i * rowScale);
+				int originalCol = (int)(j * colScale);
+				scaled[i][j] = image[originalRow][originalCol];
 			}
 		}
-		return scaledImage;
+		return scaled;
 	}
 	
 	/**
@@ -159,10 +160,11 @@ public class Runigram {
 	 * values in the two input color.
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
-		int red = (int) ((alpha * c1.getRed()) + ((1 - alpha) * c2.getRed()));
-		int green = (int) ((alpha * c1.getGreen()) + ((1 - alpha) * c2.getGreen()));
-		int blue = (int) ((alpha * c1.getBlue()) + ((1 - alpha) * c2.getBlue()));
-		return new Color(red, green, blue);
+		double redMix = (alpha * c1.getRed()) + ((1 - alpha) * c2.getRed());
+		double greenMix = (alpha * c1.getGreen()) + ((1 - alpha) * c2.getGreen());
+		double blueMix = (alpha * c1.getBlue()) + ((1 - alpha) * c2.getBlue());
+		Color mixed = new Color((int)redMix, (int)greenMix, (int)blueMix);
+		return mixed;
 	}
 	
 	/**
