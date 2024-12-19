@@ -61,6 +61,8 @@ import java.io.IOException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URI;
+
 
 import java.util.LinkedList;
 import java.util.TreeSet;
@@ -1436,7 +1438,6 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
                 /* not a url */
             }
         }
-
         // in case file is inside a .jar (classpath relative to StdDraw)
         if (icon.getImageLoadStatus() != MediaTracker.COMPLETE) {
             URL url = StdDraw.class.getResource(filename);
