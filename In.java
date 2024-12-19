@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URI;
 import java.net.Socket;
 import java.net.URLConnection;
 import java.util.ArrayList;
